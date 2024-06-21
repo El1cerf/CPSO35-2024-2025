@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPSO35 - Années 2024/25</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        header {
+            background-color: #003366; /* Couleur de la gendarmerie */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            background-color: #0055A4; /* Couleur de la gendarmerie */
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #004080;
+        }
+        .content {
+            padding: 20px;
+        }
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+            background-color: #e6e6e6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .carousel img {
+            width: 100%;
+            max-width: 600px;
+            display: none;
+            margin: auto;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel a {
+            display: block;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        .carousel-indicators span {
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .carousel-indicators span.active {
+            background-color: #003366; /* Couleur de la gendarmerie */
+        }
+        .highlight {
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            color: #333333; /* Gris foncé */
+        }
+        .question-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .question-card {
+            display: inline-block;
+            padding: 20px;
+            margin: 10px;
+            background-color: #0055A4; /* Couleur de la gendarmerie */
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .question-card:hover {
+            transform: scale(1.1);
+        }
+        .question-list {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 85, 164, 0.5); /* Ombre bleue */
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .question-list h3 {
+            margin-top: 0;
+        }
+        .question-list p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CPSO35 - Années 2024/25</h1>
+    </header>
+    <nav>
+        <a href="#home">Accueil</a>
+        <a href="#culture-generale">Culture générale</a>
+        <a href="#motivation">Motivation</a>
+        <a href="#connaissance-institutionnelle">Connaissance institutionnelle</a>
+    </nav>
+</body>
+</head>
+    <div class="content" id="home">
+        <h2>Bienvenue sur le site de la CPSO35 - Années 2024/25</h2>
+        <p>Retrouvez des exemples de sites qui proposent les dernières actualités, dans le carrousel ci-dessous :</p>
+        <div class="carousel">
+            <a href="https://www.youtube.com/channel/UCAcAnMF0OrCtUep3Y4M-ZPw" target="_blank">
+                <img src="image1.jpg" alt="YouTube" class="active">
+            </a>
+            <a href="https://www.mediapart.fr/" target="_blank">
+                <img src="image2.jpg" alt="Mediapart">
+            </a>
+            <a href="https://www.lemonde.fr/" target="_blank">
+                <img src="image3.jpg" alt="Le Monde">
+            </a>
+            <a href="https://www.vie-publique.fr/" target="_blank">
+                <img src="image4.jpg" alt="Vie Publique">
+            </a>
+            <a href="https://www.ouest-france.fr/" target="_blank">
+                <img src="image5.jpg" alt="Ouest France">
+            </a>
+            <div class="carousel-indicators">
+                <span class="active" data-slide="0"></span>
+                <span data-slide="1"></span>
+                <span data-slide="2"></span>
+                <span data-slide="3"></span>
+                <span data-slide="4"></span>
+            </div>
+        </div>
+    </div>
+<script>
+        const slides = document.querySelectorAll('.carousel img');
+        const indicators = document.querySelectorAll('.carousel-indicators span');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            indicators[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => showSlide(index));
+        });
+
+        setInterval(() => {
+            showSlide((currentSlide + 1) % slides.length);
+        }, 3000);
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                document.querySelectorAll('.content').forEach(section => section.style.display = 'none');
+                document.querySelector(this.getAttribute('href')).style.display = 'block';
+            });
+        });
+</script>
+    <div class="content" id="culture-generale" style="display:none;">
+        <h2>Entrainement quiz culture générale</h2>
+    <style>
+        .quiz-section {
+            display: none;
+        }
+        .quiz-section.active {
+            display: block;
+        }
+        .tablink {
+            background-color: #f1f1f1;
+            color: black;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .tablink.active {
+            background-color: #d6d300;
+            color: white;
+        }
+        .question {
+            margin-bottom: 15px;
+            margin: 10px 0;
+        }
+        .question label {
+            display: block;
+            margin: 5px 0;
+        }
+        .result.correct {
+            color: rgb(7, 186, 7);
+        }
+        .result.incorrect {
+            color: red;
+        }
+    </style>
+        <span class="tablink" onclick="openQuiz(event, 'quiz1')">Quiz sur les politiques agricoles en France</span>
+        <span class="tablink" onclick="openQuiz(event, 'quiz2')">Quiz sur l'écologie en France</span>
+        <span class="tablink" onclick="openQuiz(event, 'quiz3')">Quiz sur le système de santé en France</span>
+        <span class="tablink" onclick="openQuiz(event, 'quiz4')">Quiz sur l'utilisation de la technologie et des IA en France</span>
+    </div>
+
+    <div id="quiz1" class="quiz-section">
+        <h2>Quiz sur les politiques agricoles en France</h2>
+        <form id="form-quiz1">
+            <div class="question">
+                <p>Quel est le nom de la politique agricole commune de l'Union européenne dont la France est membre ?</p>
+                <label><input type="radio" name="q1" value="a"> a) PAC</label>
+                <label><input type="radio" name="q1" value="b"> b) PAI</label>
+                <label><input type="radio" name="q1" value="c"> c) PEC</label>
+                <label><input type="radio" name="q1" value="d"> d) PAM</label>
+            </div>
+            <div class="question">
+                <p>Quel pourcentage du budget de l'Union européenne est consacré à la politique agricole commune (PAC) ?</p>
+                <label><input type="radio" name="q2" value="a"> a) 20%</label>
+                <label><input type="radio" name="q2" value="b"> b) 30%</label>
+                <label><input type="radio" name="q2" value="c"> c) 40%</label>
+                <label><input type="radio" name="q2" value="d"> d) 50%</label>
+            </div>
+            <div class="question">
+                <p>Quel ministère est responsable de l'agriculture en France ?</p>
+                <label><input type="radio" name="q3" value="a"> a) Ministère de l'Économie et des Finances</label>
+                <label><input type="radio" name="q3" value="b"> b) Ministère de la Transition écologique</label>
+                <label><input type="radio" name="q3" value="c"> c) Ministère de l'Agriculture et de la Souveraineté alimentaire</label>
+                <label><input type="radio" name="q3" value="d"> d) Ministère de l'Intérieur</label>
+            </div>
+            <div class="question">
+                <p>En quelle année la France a-t-elle mis en place la première politique agricole nationale ?</p>
+                <label><input type="radio" name="q4" value="a"> a) 1946</label>
+                <label><input type="radio" name="q4" value="b"> b) 1962</label>
+                <label><input type="radio" name="q4" value="c"> c) 1980</label>
+                <label><input type="radio" name="q4" value="d"> d) 1992</label>
+            </div>
+            <div class="question">
+                <p>Quel est l'objectif principal de la politique agricole commune (PAC) ?</p>
+                <label><input type="radio" name="q5" value="a"> a) Augmenter la production agricole</label>
+                <label><input type="radio" name="q5" value="b"> b) Assurer un niveau de vie équitable aux agriculteurs</label>
+                <label><input type="radio" name="q5" value="c"> c) Réduire les exportations agricoles</label>
+                <label><input type="radio" name="q5" value="d"> d) Promouvoir les produits agricoles non européens</label>
+            </div>
+            <div class="question">
+                <p>Quel programme français vise à promouvoir les pratiques agricoles durables et respectueuses de l'environnement ?</p>
+                <label><input type="radio" name="q6" value="a"> a) Plan Ecophyto</label>
+                <label><input type="radio" name="q6" value="b"> b) Plan AgriBio</label>
+                <label><input type="radio" name="q6" value="c"> c) Plan Vert</label>
+                <label><input type="radio" name="q6" value="d"> d) Plan AgroEco</label>
+            </div>
+            <div class="question">
+                <p>Quelle proportion des terres agricoles en France est dédiée à l'agriculture biologique en 2021 ?</p>
+                <label><input type="radio" name="q7" value="a"> a) 5%</label>
+                <label><input type="radio" name="q7" value="b"> b) 10%</label>
+                <label><input type="radio" name="q7" value="c"> c) 15%</label>
+                <label><input type="radio" name="q7" value="d"> d) 20%</label>
+            </div>
+            <div class="question">
+                <p>Quelle aide financière vise à soutenir les jeunes agriculteurs s'installant pour la première fois ?</p>
+                <label><input type="radio" name="q8" value="a"> a) Aide à l'installation</label>
+                <label><input type="radio" name="q8" value="b"> b) Prime d'accueil à l'installation</label>
+                <label><input type="radio" name="q8" value="c"> c) Prêt Jeunes Agriculteurs</label>
+                <label><input type="radio" name="q8" value="d"> d) Aide au démarrage</label>
+            </div>
+            <div class="question">
+                <p>Quel est le principal syndicat agricole en France ?</p>
+                <label><input type="radio" name="q9" value="a"> a) FNSEA (Fédération Nationale des Syndicats d'Exploitants Agricoles)</label>
+                <label><input type="radio" name="q9" value="b"> b) Confédération Paysanne</label>
+                <label><input type="radio" name="q9" value="c"> c) Coordination Rurale</label>
+                <label><input type="radio" name="q9" value="d"> d) Jeunes Agriculteurs</label>
+            </div>
+            <div class="question">
+                <p>Quel dispositif a été mis en place pour encourager la vente directe entre agriculteurs et consommateurs en France ?</p>
+                <label><input type="radio" name="q10" value="a"> a) Marché de Producteurs</label>
+                <label><input type="radio" name="q10" value="b"> b) Circuits Courts</label>
+                <label><input type="radio" name="q10" value="c"> c) Vente locale</label>
+                <label><input type="radio" name="q10" value="d"> d) Direct Agri</label>
+            </div>
+            <!-- Add remaining questions similarly -->
+            <button type="button" onclick="checkAnswers('quiz1', quiz1Answers)">Submit</button>
+        </form>
+        <div id="results-quiz1"></div>
+    </div>
+
+    <div id="quiz2" class="quiz-section">
+        <h2>Quiz sur l'écologie en France</h2>
+        <form id="form-quiz2">
+            <div class="question">
+                <p>Quelle est la plus grande forêt de France ?</p>
+                <label><input type="radio" name="q1" value="a"> a) Forêt de Fontainebleau</label>
+                <label><input type="radio" name="q1" value="b"> b) Forêt des Landes</label>
+                <label><input type="radio" name="q1" value="c"> c) Forêt de Brocéliande</label>
+                <label><input type="radio" name="q1" value="d"> d) Forêt de Rambouillet</label>
+            </div>
+            <div class="question">
+                <p>Quel est le pourcentage de l’électricité produite en France qui provient de l’énergie nucléaire ?</p>
+                <label><input type="radio" name="q2" value="a"> a) 20%</label>
+                <label><input type="radio" name="q2" value="b"> b) 40%</label>
+                <label><input type="radio" name="q2" value="c"> c) 70%</label>
+                <label><input type="radio" name="q2" value="d"> d) 90%</label>
+            </div>
+            <div class="question">
+                <p>En quelle année la France a-t-elle adopté la loi sur la transition énergétique pour la croissance verte ?</p>
+                <label><input type="radio" name="q3" value="a"> a) 2005</label>
+                <label><input type="radio" name="q3" value="b"> b) 2010</label>
+                <label><input type="radio" name="q3" value="c"> c) 2015</label>
+                <label><input type="radio" name="q3" value="d"> d) 2020</label>
+            </div>
+            <div class="question">
+                <p>Quel est le nom de la taxe carbone mise en place en France pour réduire les émissions de CO2 ?</p>
+                <label><input type="radio" name="q4" value="a"> a) Ecotaxe</label>
+                <label><input type="radio" name="q4" value="b"> b) Contribution Climat Energie</label>
+                <label><input type="radio" name="q4" value="c"> c) Taxe Verte</label>
+                <label><input type="radio" name="q4" value="d"> d) Taxe environnementale</label>
+            </div>
+            <div class="question">
+                <p>Quel parc naturel régional est situé en Corse ?</p>
+                <label><input type="radio" name="q5" value="a"> a) Parc naturel régional de Camargue</label>
+                <label><input type="radio" name="q5" value="b"> b) Parc naturel régional des Vosges du Nord</label>
+                <label><input type="radio" name="q5" value="c"> c) Parc naturel régional de la Corse</label>
+                <label><input type="radio" name="q5" value="d"> d) Parc régional des Ballons des Vosges</label>
+            </div>
+            <div class="question">
+                <p>Quel est le principal objectif de la COP21, tenue à Paris en 2015 ?</p>
+                <label><input type="radio" name="q6" value="a"> a) Réduire les déchets plastiques</label>
+                <label><input type="radio" name="q6" value="b"> b) lutter contre la déforestation</label>
+                <label><input type="radio" name="q6" value="c"> c) Limiter le réchauffement climatique à 2°C voire 1,5°C</label>
+                <label><input type="radio" name="q6" value="d"> d) Protéger les espèces en voie de disparition</label>
+            </div>
+            <div class="question">
+                <p>Quelle association française est connue pour son engagement en faveur de la protection des oiseaux et de la biodiversité ?</p>
+                <label><input type="radio" name="q7" value="a"> a) Greenpeace</label>
+                <label><input type="radio" name="q7" value="b"> b) WWF France</label>
+                <label><input type="radio" name="q7" value="c"> c) LPO (Ligue pour la Protection des Oiseaux)</label>
+                <label><input type="radio" name="q7" value="d"> d) France Nature Environnement</label>
+            </div>
+            <div class="question">
+                <p>Quel est le pourcentage de la surface terrestre de la France métropolitaine couvert par des aires protégées ?</p>
+                <label><input type="radio" name="q8" value="a"> a) 5%</label>
+                <label><input type="radio" name="q8" value="b"> b) 15%</label>
+                <label><input type="radio" name="q8" value="c"> c) 25%</label>
+                <label><input type="radio" name="q8" value="d"> d) 35%</label>
+            </div>
+            <div class="question">
+                <p>Quel est le plus grand parc éolien offshore de France ?</p>
+                <label><input type="radio" name="q9" value="a"> a) Parc éolien de Saint Nazaire</label>
+                <label><input type="radio" name="q9" value="b"> b) Parc éolien de Fécamp</label>
+                <label><input type="radio" name="q9" value="c"> c) Parc éolien de Dunkerque</label>
+                <label><input type="radio" name="q9" value="d"> d) Parc éolien de Courseulles-sur-Mer</label>
+            </div>
+            <div class="question">
+                <p>Quel est le nom du mouvement lancé en France en 2018 par des jeunes pour demander une action climatique plus ambitieuse ?</p>
+                <label><input type="radio" name="q10" value="a"> a) Fridays for Future</label>
+                <label><input type="radio" name="q10" value="b"> b) Youth for Climate</label>
+                <label><input type="radio" name="q10" value="c"> c) Extinction Rébellion</label>
+                <label><input type="radio" name="q10" value="d"> d) Génération Climat</label>
+            </div>
+            <!-- Add remaining questions similarly -->
+            <button type="button" onclick="checkAnswers('quiz2', quiz2Answers)">Submit</button>
+        </form>
+        <div id="results-quiz2"></div>
+    </div>
+
+    <div id="quiz3" class="quiz-section">
+        <h2>Quiz sur le système de santé en France</h2>
+        <form id="form-quiz3">
+            <div class="question">
+                <p>Quel est le nom de l'organisme qui gère la sécurité sociale en France ?</p>
+                <label><input type="radio" name="q1" value="a"> a) CNAM (Caisse Nationale de l'Assurance Maladie)</label>
+                <label><input type="radio" name="q1" value="b"> b) MSA (Mutualité Sociale Agricole)</label>
+                <label><input type="radio" name="q1" value="c"> c) CPAM (Caisse Primaire d'Assurance Maladie)</label>
+                <label><input type="radio" name="q1" value="d"> d) URSSAF (Union de Recouvrement des Cotisations de Sécurité Sociale et d'Allocations Familiales)</label>
+            </div>
+            <div class="question">
+                <p>Quelle est la couverture des frais de santé par l'Assurance Maladie pour une consultation chez un médecin généraliste ?</p>
+                <label><input type="radio" name="q2" value="a"> a) 50%</label>
+                <label><input type="radio" name="q2" value="b"> b) 70%</label>
+                <label><input type="radio" name="q2" value="c"> c) 80%</label>
+                <label><input type="radio" name="q2" value="d"> d) 100%</label>
+            </div>
+            <div class="question">
+                <p>En quelle année la Sécurité sociale a-t-elle été créée en France ?</p>
+                <label><input type="radio" name="q3" value="a"> a) 1936</label>
+                <label><input type="radio" name="q3" value="b"> b) 1945</label>
+                <label><input type="radio" name="q3" value="c"> c) 1960</label>
+                <label><input type="radio" name="q3" value="d"> d) 1975</label>
+            </div>
+            <div class="question">
+                <p>Quel est le rôle des mutuelles de santé en France ?</p>
+                <label><input type="radio" name="q4" value="a"> a) Fournir des soins médicaux gratuits</label>
+                <label><input type="radio" name="q4" value="b"> b) Compléter les remboursements de l'Assurance Maladie</label>
+                <label><input type="radio" name="q4" value="c"> c) Financer les hôpitaux publics</label>
+                <label><input type="radio" name="q4" value="d"> d) Réguler les prix des médicaments</label>
+            </div>
+            <div class="question">
+                <p>Quel est le nom du système permettant à un patient d'être suivi par un médecin traitant en France ?</p>
+                <label><input type="radio" name="q5" value="a"> a) Parcours de soins coordonnés</label>
+                <label><input type="radio" name="q5" value="b"> b) Réseau de soins</label>
+                <label><input type="radio" name="q5" value="c"> c) Programme de santé personnalisé</label>
+                <label><input type="radio" name="q5" value="d"> d) Suivi médical intégré</label>
+            </div>
+            <div class="question">
+                <p>Quel est l'âge de la majorité médicale en France, à partir duquel un individu peut prendre ses propres décisions de santé sans l'accord de ses parents ?</p>
+                <label><input type="radio" name="q6" value="a"> a) 16 ans</label>
+                <label><input type="radio" name="q6" value="b"> b) 18 ans</label>
+                <label><input type="radio" name="q6" value="c"> c) 21 ans</label>
+                <label><input type="radio" name="q6" value="d"> d) 25 ans</label>
+            </div>
+            <div class="question">
+                <p>Quel est le pourcentage de la population française bénéficiant de la couverture maladie universelle complémentaire (CMU-C) ?</p>
+                <label><input type="radio" name="q7" value="a"> a) 5%</label>
+                <label><input type="radio" name="q7" value="b"> b) 10%</label>
+                <label><input type="radio" name="q7" value="c"> c) 15%</label>
+                <label><input type="radio" name="q7" value="d"> d) 20%</label>
+            </div>
+            <div class="question">
+                <p>Quel est le nom du document que les médecins remettent aux patients après une consultation pour obtenir un remboursement de la Sécurité sociale ?</p>
+                <label><input type="radio" name="q8" value="a"> a) Feuille de soins</label>
+                <label><input type="radio" name="q8" value="b"> b) Attestation de consultation</label>
+                <label><input type="radio" name="q8" value="c"> c) Reçu médical</label>
+                <label><input type="radio" name="q8" value="d"> d) Certificat de soins</label>
+            </div>
+            <div class="question">
+                <p>Combien de niveaux de soins hospitaliers existe-t-il en France ?</p>
+                <label><input type="radio" name="q9" value="a"> a) 1</label>
+                <label><input type="radio" name="q9" value="b"> b) 2</label>
+                <label><input type="radio" name="q9" value="c"> c) 3</label>
+                <label><input type="radio" name="q9" value="d"> d) 4</label>
+            </div>
+            <div class="question">
+                <p>Quelle réforme, introduite en 2004, vise à améliorer la gestion des maladies chroniques et à coordonner les soins autour du patient ?</p>
+                <label><input type="radio" name="q10" value="a"> a) Plan Cancer</label>
+                <label><input type="radio" name="q10" value="b"> b) Réforme de la Tarification à l'Activité</label>
+                <label><input type="radio" name="q10" value="c"> c) Loi Hôpital, Patients, Santé et Territoires (HPST)</label>
+                <label><input type="radio" name="q10" value="d"> d) Programme de Médicalisation des Systèmes d'Information (PMSI)</label>
+            </div>
+            <!-- Add remaining questions similarly -->
+            <button type="button" onclick="checkAnswers('quiz3', quiz3Answers)">Submit</button>
+        </form>
+        <div id="results-quiz3"></div>
+    </div>
+
+    <div id="quiz4" class="quiz-section">
+        <h2>Quiz sur l'utilisation de la technologie et des IA en France</h2>
+        <form id="form-quiz4">
+            <div class="question">
+                <p>Quelle est l'organisation française chargée de la protection des données personnelles ?</p>
+                <label><input type="radio" name="q1" value="a"> a) ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)</label>
+                <label><input type="radio" name="q1" value="b"> b) CNIL (Commission Nationale de l'Informatique et des Libertés)</label>
+                <label><input type="radio" name="q1" value="c"> c) INSEE (Institut National de la Statistique et des Études Économiques)</label>
+                <label><input type="radio" name="q1" value="d"> d) ARCEP (Autorité de Régulation des Communications Électroniques et des Postes)</label>
+            </div>
+            <div class="question">
+                <p>En quelle année le RGPD (Règlement Général sur la Protection des Données) est-il entré en vigueur dans l'Union Européenne, y compris en France ?</p>
+                <label><input type="radio" name="q2" value="a"> a) 2015</label>
+                <label><input type="radio" name="q2" value="b"> b) 2016</label>
+                <label><input type="radio" name="q2" value="c"> c) 2018</label>
+                <label><input type="radio" name="q2" value="d"> d) 2020</label>
+            </div>
+            <div class="question">
+                <p>Quelle ville française est souvent considérée comme un hub technologique et un centre d'innovation en IA ?</p>
+                <label><input type="radio" name="q3" value="a"> a) Lyon</label>
+                <label><input type="radio" name="q3" value="b"> b) Marseille</label>
+                <label><input type="radio" name="q3" value="c"> c) Paris</label>
+                <label><input type="radio" name="q3" value="d"> d) Toulouse</label>
+            </div>
+            <div class="question">
+                <p>Quel programme français a été lancé pour soutenir les startups innovantes, y compris celles spécialisées en IA ?</p>
+                <label><input type="radio" name="q4" value="a"> a) French Tech</label>
+                <label><input type="radio" name="q4" value="b"> b) French Innovation</label>
+                <label><input type="radio" name="q4" value="c"> c) Startup France</label>
+                <label><input type="radio" name="q4" value="d"> d) Tech Forward</label>
+            </div>
+            <div class="question">
+                <p>Quel est le nom du supercalculateur français classé parmi les plus puissants au monde ?</p>
+                <label><input type="radio" name="q5" value="a"> a) Titan</label>
+                <label><input type="radio" name="q5" value="b"> b) Aurora</label>
+                <label><input type="radio" name="q5" value="c"> c) Jean Zay</label>
+                <label><input type="radio" name="q5" value="d"> d) Curie</label>
+            </div>
+            <div class="question">
+                <p>En 2020, quelle entreprise française a annoncé un partenariat avec Google pour développer l'IA dans le secteur de la santé ?</p>
+                <label><input type="radio" name="q6" value="a"> a) Sanofi</label>
+                <label><input type="radio" name="q6" value="b"> b) Total</label>
+                <label><input type="radio" name="q6" value="c"> c) l'Oréal</label>
+                <label><input type="radio" name="q6" value="d"> d) Renault</label>
+            </div>
+            <div class="question">
+                <p>Quel ministère de France est chargé de la stratégie nationale pour l'IA ?</p>
+                <label><input type="radio" name="q7" value="a"> a) Ministère de l'Economie et des Finances</label>
+                <label><input type="radio" name="q7" value="b"> b) Ministère de l'Education Nationale</label>
+                <label><input type="radio" name="q7" value="c"> c) Ministère de la Santé</label>
+                <label><input type="radio" name="q7" value="d"> d) Ministère de l'Europe et des Affaires Etrangères</label>
+            </div>
+            <div class="question">
+                <p>Quel domaine utilise de plus en plus l'IA en France pour améliorer la production et la gestion des ressources ?</p>
+                <label><input type="radio" name="q8" value="a"> a) Agriculture</label>
+                <label><input type="radio" name="q8" value="b"> b) Transport</label>
+                <label><input type="radio" name="q8" value="c"> c) Education</label>
+                <label><input type="radio" name="q8" value="d"> d) Tourisme</label>
+            </div>
+            <div class="question">
+                <p>Quel est le nom de l'initiative lancée par le gouvernement français en 2018 pour développer l'IA et positionner la France en tant que leader dans ce domaine ?</p>
+                <label><input type="radio" name="q9" value="a"> a) Al for Humanity</label>
+                <label><input type="radio" name="q9" value="b"> b) France IA</label>
+                <label><input type="radio" name="q9" value="c"> c) Digital France</label>
+                <label><input type="radio" name="q9" value="d"> d) Innovate IA</label>
+            </div>
+            <div class="question">
+                <p>Quel est l'un des principaux défis de l'IA en France, selon les experts ?</p>
+                <label><input type="radio" name="q10" value="a"> a) La protection des données personnelles</label>
+                <label><input type="radio" name="q10" value="b"> b) La création de logiciels open source</label>
+                <label><input type="radio" name="q10" value="c"> c) La réduction de la consommation énergétique</label>
+                <label><input type="radio" name="q10" value="d"> d) La diversification des inverstissements</label>
+            </div>
+            <!-- Add remaining questions similarly -->
+            <button type="button" onclick="checkAnswers('quiz4', quiz4Answers)">Submit</button>
+        </form>
+        <div id="results-quiz4"></div>
+    </div>
+
+    <script>
+        const quiz1Answers = {
+            q1: 'a',
+            q2: 'c',
+            q3: 'c',
+            q4: 'b',
+            q5: 'b',
+            q6: 'a',
+            q7: 'b',
+            q8: 'b',
+            q9: 'a',
+            q10: 'b',
+        };
+
+        const quiz2Answers = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'c',
+            q4: 'b',
+            q5: 'c',
+            q6: 'c',
+            q7: 'c',
+            q8: 'b',
+            q9: 'a',
+            q10: 'b',
+        };
+
+        const quiz3Answers = {
+            q1: 'a',
+            q2: 'b',
+            q3: 'b',
+            q4: 'b',
+            q5: 'a',
+            q6: 'b',
+            q7: 'a',
+            q8: 'a',
+            q9: 'c',
+            q10: 'c',
+        };
+
+        const quiz4Answers = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'c',
+            q4: 'a',
+            q5: 'c',
+            q6: 'a',
+            q7: 'a',
+            q8: 'a',
+            q9: 'a',
+            q10: 'a',
+        };
+
+        function openQuiz(event, quizId) {
+            const tablinks = document.getElementsByClassName("tablink");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            event.currentTarget.classList.add("active");
+
+            const quizSections = document.getElementsByClassName("quiz-section");
+            for (let i = 0; i < quizSections.length; i++) {
+                quizSections[i].classList.remove("active");
+            }
+            document.getElementById(quizId).classList.add("active");
+        }
+
+        function checkAnswers(quizId, answers) {
+            const form = document.getElementById(`form-${quizId}`);
+            const resultDiv = document.getElementById(`results-${quizId}`);
+            resultDiv.innerHTML = '';
+            const formData = new FormData(form);
+            let correctCount = 0;
+
+            for (const [question, correctAnswer] of Object.entries(answers)) {
+                const userAnswer = formData.get(question);
+                const result = document.createElement('div');
+                if (userAnswer === correctAnswer) {
+                    result.className = 'result correct';
+                    result.textContent = `Question ${question.slice(1)}: Correct`;
+                    correctCount++;
+                } else {
+                    result.className = 'result incorrect';
+                    result.textContent = `Question ${question.slice(1)}: Incorrect (Correct answer: ${correctAnswer})`;
+                }
+                resultDiv.appendChild(result);
+            }
+
+            const summary = document.createElement('div');
+            summary.textContent = `You got ${correctCount} out of ${Object.keys(answers).length} correct.`;
+            resultDiv.appendChild(summary);
+        }
+    </script>
+
+    <div class="content" id="motivation" style="display:none;">
+        <h2>Entrainement motivation</h2>
+        <h3>Epreuve de l'Oral</h3>
+        <p class="highlight">
+            Entrez, rectifiez la position : 
+            « Dupont, François, élève de la classe préparatoire sous-officier de Rennes, à vos ordres (mon) XXXXXXXX ».<br>
+            Attendez qu’on vous mette au repos et qu’on vous invite à tirer un sujet.<br>
+            À chaque directive du jury, vous répondez « reçu (mon) XXXX »<br>
+            Lorsque vous avez préparé le sujet et que vous revenez dans la pièce, rectifiez la position.<br><br>
+
+            Si le jury ne dit rien : vous parlez « (mon) XXXX, (mon) XXXXX, le sujet que je dois traiter est le suivant : XXXX. »<br>
+            Toutefois, à leur demande (qui êtes vous?), il faut savoir se présenter brièvement : nom, prénom, âge, situation familiale, diplômes, situation actuelle. Annoncez ensuite le sujet que vous avez tiré.<br><br>
+
+            Restituez ensuite ce que vous avez appris en classe (intro, idées intégrées dans un plan et conclusion).
+        </p>
+        <div class="question-container">
+            <div id="question-card" class="question-card">Tirez une question</div>
+        </div>
+        <div class="question-list">
+            <h3>Questions :</h3>
+            <p>1 / Pourquoi êtes vous là ? Pourquoi gendarme ?</p>
+            <p>2 / Votre situation passée, c'est-à-dire vos études, votre expérience professionnelle. Si cela est demandé, sachez donner les raisons de vos choix (pourquoi avez-vous suivi de telles études ? Pourquoi vous êtes-vous engagé dans l'armée de terre, pourquoi avoir arrêté les études, pourquoi avoir fait tel métier ?).</p>
+            <p>3 / Si vous voyez un collègue agir de façon malhonnête, le diriez-vous à votre hiérarchie ?</p>
+            <p>4 / Si vous ne réussissez pas le concours, que ferez-vous ?</p>
+            <p>5 / Qu’appréciez vous dans la profession de gendarme ?</p>
+            <p>6 / Lors d’un contrôle d’identité, votre interlocuteur sort de sa poche une arme blanche, comment réagissez-vous ?</p>
+            <p>7 / Décrivez une situation au cours de laquelle vous avez été amené à faire preuve d’initiative.</p>
+            <p>8 / Avez-vous déjà agi sous pression ?</p>
+            <p>9 / Quelles sont les valeurs les plus importantes à vos yeux ?</p>
+            <p>10 / Qu’est ce que la légitime défense ?</p>
+            <p>11 / Pour vous que représente l’uniforme ?</p>
+            <p>12 / Comment vous êtes en famille/ au travail ?</p>
+            <p>13 / Votre plus grande colère ?</p>
+            <p>14 / Votre plus grande déception ?</p>
+            <p>15 / Votre rapport avec l'arme et la mort ?</p>
+            <p>16 / Le métier de gendarme est-il dangereux ?</p>
+            <p>17 / Que pense votre famille/amis de votre projet ?</p>
+            <p>18 / Si j’étais un animal lequel ça serait ?</p>
+            <p>19 / 1 minute pour les convaincre de me prendre moi plutôt qu’un autre</p>
+            <p>20 / Qui êtes vous ?</p>
+            <p>21 / Quel type de personnes je n’aime pas ?</p>
+            <p>22 / Vous vous voyez avec un casque et un bouclier dans une manifestation avec des gens qui vous lancent des pavés ?</p>
+            <p>23 / Si vous êtes affectée en garde républicaine à surveiller un Palais à Paris toute la journée, que faites vous ?</p>
+            <p>24 / Votre rapport à la violence ?</p>
+            <p>25 / Un fait qui vous a marqué ?</p>
+            <p>26 / Pourquoi vous ?</p>
+            <p>27 / Rapport avec la misère humaine ?</p>
+            <p>28 / Dans votre groupe d’amis, quel type de personne êtes-vous ?</p>
+            <p>29 / Vous sentez-vous bien entourée ?</p>
+            <p>30 / Quels inconvénients de travailler en gendarmerie ?</p>
+            <p>31 / La vie en communauté en caserne ne vous dérange pas ?</p>
+            <p>32 / Êtes-vous une personne qui stresse beaucoup ?</p>
+            <p>33 / Comment faites-vous pour évacuer votre stress ?</p>
+            <p>34 / Quelles sont les choses qui vous font perdre vos nerfs, et pourquoi ?</p>
+            <p>35 / Donnez une situation de votre vie ou vous avez su rebondir.</p>
+            <p>36 / Si on vous insulte ou agresse, comment réagissez-vous ?</p>
+            <p>37 / Avez-vous déjà eu affaire à un psychologue, si oui pour quelle raison ?</p>
+            <p>38 / Savez-vous combien de temps dure la formation ?</p>
+            <p>39 / Avez-vous déjà tiré avec une arme à feu ? En possédez-vous une ? Avez-vous une appréhension vis-à-vis des armes ?</p>
+            <p>40 / Ce que les autres disent de moi ?</p>
+            <p>41 / Ce qui me rend heureuse dans ma vie ?</p>
+        </div>
+    </div>
+    <script>       // Question Tirage
+        const questions = [
+        "Pourquoi êtes vous là ? Pourquoi gendarme ?",
+        "Votre situation passée, c'est-à-dire vos études, votre expérience professionnelle. Si cela est demandé, sachez donner les raisons de vos choix (pourquoi avez-vous suivi de telles études ? Pourquoi vous êtes-vous engagé dans l'armée de terre, pourquoi avoir arrêté les études, pourquoi avoir fait tel métier ?).",
+        "Si vous voyez un collègue agir de façon malhonnête, le diriez-vous à votre hiérarchie ?",
+        "Si vous ne réussissez pas le concours, que ferez-vous ?",
+        "Qu’appréciez vous dans la profession de gendarme ?",
+        "Lors d’un contrôle d’identité, votre interlocuteur sort de sa poche une arme blanche, comment réagissez-vous ?",
+        "Décrivez une situation au cours de laquelle vous avez été amené à faire preuve d’initiative.",
+        "Avez-vous déjà agi sous pression ?",
+        "Quelles sont les valeurs les plus importantes à vos yeux ?",
+        "Qu’est ce que la légitime défense ?",
+        "Pour vous que représente l’uniforme ?",
+        "Comment vous êtes en famille/ au travail ?",
+        "Votre plus grande colère ?",
+        "Votre plus grande déception ?",
+        "Votre rapport avec l'arme et la mort ?",
+        "Le métier de gendarme est-il dangereux ?",
+        "Que pense votre famille/amis de votre projet ?",
+        "Si j’étais un animal lequel ça serait ?",
+        "1 minute pour les convaincre de me prendre moi plutôt qu’un autre",
+        "Qui êtes vous ?",
+        "Quel type de personnes je n’aime pas ?",
+        "Vous vous voyez avec un casque et un bouclier dans une manifestation avec des gens qui vous lancent des pavés ?",
+        "Si vous êtes affectée en garde républicaine à surveiller un Palais à Paris toute la journée, que faites vous ?",
+        "Votre rapport à la violence ?",
+        "Un fait qui vous a marqué ?",
+        "Pourquoi vous ?",
+        "Rapport avec la misère humaine ?",
+        "Dans votre groupe d’amis, quel type de personne êtes-vous ?",
+        "Vous sentez-vous bien entourée ?",
+        "Quels inconvénients de travailler en gendarmerie ?",
+        "La vie en communauté en caserne ne vous dérange pas ?",
+        "Êtes-vous une personne qui stresse beaucoup ?",
+        "Comment faites-vous pour évacuer votre stress ?",
+        "Quelles sont les choses qui vous font perdre vos nerfs, et pourquoi ?",
+        "Donnez une situation de votre vie ou vous avez su rebondir.",
+        "Si on vous insulte ou agresse, comment réagissez-vous ?",
+        "Avez-vous déjà eu affaire à un psychologue, si oui pour quelle raison ?",
+        "Savez-vous combien de temps dure la formation ?",
+        "Avez-vous déjà tiré avec une arme à feu ? En possédez-vous une ? Avez-vous une appréhension vis-à-vis des armes ?",
+        "Ce que les autres disent de moi ?",
+        "Ce qui me rend heureuse dans ma vie ?"
+    ];
+
+    const questionCard = document.getElementById('question-card');
+
+    questionCard.addEventListener('click', () => {
+        if (questions.length === 0) {
+            questions.push(...questionCard.dataset.usedQuestions.split('|'));
+            questionCard.dataset.usedQuestions = '';
+        }
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        const question = questions.splice(randomIndex, 1)[0];
+        questionCard.textContent = question;
+        questionCard.dataset.usedQuestions = questionCard.dataset.usedQuestions ? questionCard.dataset.usedQuestions + '|' + question : question;
+    });
+</script>
+<div class="content" id="connaissance-institutionnelle" style="display:none;">
+        <h2>Entrainement connaissance institutionnelle</h2>
+        <h3> Pour voir la réponse, faites un double clic sur la question.</h3>
+    <div id="problems-container"></div>
+    <p id="message"></p>
+  </div>
+  
+<style>
+  .container {
+    width: 80%;
+    max-width: 800px;
+  }
+  .problem {
+    background-color: #00ffbf;
+    color: rgb(83, 82, 82);
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .problem:hover {
+    background-color: #009bb3;
+  }
+  .answer {
+    display: none;
+    background-color: #e9ecef;
+    color: #333;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+</style>
+
+<script>
+  const problems = [
+    { problem: "Quelle est l'année de création de la Gendarmerie Nationale ?", answer: "1791" },
+    { problem: "Quelle est la devise de la Gendarmerie Nationale ?", answer: "Honneur, Patrie, Valeur, Discipline" },
+    { problem: "Quelle est l'année de création de la Maréchaussée ?", answer: "1626" },
+    { problem: "Quelle est l'année de création de la Connétablie ?", answer: "1373" },
+    { problem: "Quelle est la surface couverte par la Gendarmerie Nationale ?", answer: "95%" },
+    { problem: "En quelle année a eu lieu la bataille de Hondschoote ?", answer: "1793" },
+    { problem: "En quelle année a eu lieu la bataille de Villodrigo ?", answer: "1812" },
+    { problem: "En quelle année a eu lieu la bataille de Taguin ?", answer: "1843" },
+    { problem: "En quelle année a eu lieu la bataille de Sebastopol ?", answer: "1855" },
+    { problem: "En quelle année a eu lieu la bataille d'Indochine ?", answer: "1945 - 1954" },
+    { problem: "En quelle année a eu lieu la bataille en Afrique du nord ?", answer: "1952 - 1962" },
+    { problem: "À quel ministère est rattachée la Gendarmerie Nationale ?", answer: "Les ministères de l'Intérieur et de la Défense" },
+    { problem: "Combien y a-t-il de gendarmes en France ?", answer: "130 000" },
+    { problem: "Où se trouve le ministère de l'Intérieur ?", answer: "Paris" },
+    { problem: "Qui est le directeur général de la Gendarmerie Nationale ?", answer: "Général Christian Rodriguez" },
+    { problem: "Qui est le major général de la Gendarmerie Nationale ?", answer: "Général André Petillot" },
+    { problem: "Qui est le commandant de la zone de Défense et de Sécurité Ouest ?", answer: "Le général Hubert Bonneau" },
+    { problem: "Par combien de régions la Gendarmerie Nationale est-elle divisée ?", answer: "13" },
+    { problem: "Par combien de zones de défense la Gendarmerie Mobile est-elle divisée ?", answer: "7" },
+    { problem: "Combien d'escadrons de Gendarmerie Mobile y a-t-il en France ?", answer: "116" },
+    { problem: "De combien de personnels est composée la Gendarmerie Mobile ?", answer: "13 000" },
+    { problem: "Que veut dire le sigle GAV ?", answer: "Gendarme Adjoint Volontaire" },
+    { problem: "Que veut dire le sigle GIGN ?", answer: "Groupe d'Intervention de la Gendarmerie Nationale" },
+    { problem: "Que veut dire le sigle PSIG ?", answer: "Peloton de Surveillance et d'Intervention de la Gendarmerie" },
+    { problem: "Que veut dire le sigle PGHM ?", answer: "Peloton de Gendarmerie de Haute Montagne" },
+    { problem: "Que veut dire le sigle EGM ?", answer: "Escadron de Gendarmerie Mobile" },
+    { problem: "Que veut dire le sigle PSPG ?", answer: "Peloton Spécialisé de Protection de la Gendarmerie" },
+    { problem: "Quels sont les personnels que l’on retrouve dans la gendarmerie ?", answer: "Civils, militaires d’active, CSTAGN, réservistes, volontaires" },
+    { problem: "Quelles sont les différentes phases de formation en école ?", answer: "Une première phase dite “formation verte/militaire” on y apprend la rigueur militaire, on est en tenue combat. La seconde comprend surtout de la théorique et pratique sur le métier et quotidien du gendarme." },
+    { problem: "Qui a écrit la Marseillaise ?", answer: "Claude Joseph Rouget de Lisle" },
+    { problem: "Quelle est la coiffe d'état-major/de cérémonie du gendarme ?", answer: "Képi (H), Postillon (F)" },
+    { problem: "Où le GIGN était-il basé, à sa création ?", answer: "Mont-de-Marsan" },
+    { problem: "Quel est le niveau d'études minimum exigé pour postuler au concours sous-officier ?", answer: "Baccalauréat" },
+    { problem: "Quelle est la mission principale de la Section de Recherche ?", answer: "Enquête judiciaire" },
+    { problem: "Quelle arme est actuellement en dotation dans la gendarmerie ?", answer: "Sig Sauer SP2022" }
+  ];
+
+  const problemsContainer = document.getElementById('problems-container');
+
+  problems.forEach((item, index) => {
+    const problemDiv = document.createElement('div');
+    problemDiv.classList.add('problem');
+    problemDiv.textContent = `${index + 1}. ${item.problem}`;
+    
+    const answerDiv = document.createElement('div');
+    answerDiv.classList.add('answer');
+    answerDiv.textContent = item.answer;
+
+    problemDiv.addEventListener('click', () => {
+      answerDiv.style.display = answerDiv.style.display === 'none' ? 'block' : 'none';
+    });
+
+    problemsContainer.appendChild(problemDiv);
+    problemsContainer.appendChild(answerDiv);
+  });
+</script>
+</body>
+</html>
